@@ -1,0 +1,33 @@
+<br>
+<div class="container" *ngIf="student">
+        <h1>Student Form</h1>
+        <form id="studentForm" name="studentForm" (ngSubmit)="add()" #studentForm="ngForm">
+                
+                <div class="form-group">
+                        <label for="name">name</label>
+                        <input id="name" name="name" [(ngModel)]="student.name" placeholder="name" required #name="ngModel" class="form-control">
+                        <span [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                                Name is required
+                        </span>
+                </div>
+                
+                <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" [(ngModel)] = "student.gender" required #gender="ngModel" class="form-control">
+                                <option *ngFor="let sex of genderList" [value]="sex.key">{{sex.value}}</option>
+                        </select>
+                        <span [hidden]="gender.valid || gender.pristine" class="alert alert-danger">
+                                Gender is required
+                        </span>
+                </div>
+                
+                <div>
+                        <button type="submit" class="btn btn-success" class="btn btn-success" [disabled]="!studentForm.form.valid">Add</button>
+                        <button type="button" class="btn" (click) = "update();">Update</button>
+                        <button type="button" class="btn" (click) = "delete();">Delete</button>
+                        <button (click) = "studentForm.reset(); newStudent();" class="btn btn-success">Reset</button>
+                        <button (click)="goBack()" class="btn btn-success" class="btn btn-success">Back</button>                       
+                </div>
+        </form>
+</div>
+

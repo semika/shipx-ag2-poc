@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <title>ShipX AG2 POC</title>
+  <meta charset="UTF-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="node_modules/material-design-lite/material.min.css">
+  <link rel="stylesheet" href="node_modules/material-design-icons/iconfont/material-icons.css">
+  <script src="node_modules/material-design-lite/material.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Polyfills -->
+
+  <!-- 1. Load libraries -->
+  <!-- Polyfill(s) for older browsers -->
+  <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script> <!-- Need for bower components -->
+  <script src="node_modules/core-js/client/shim.min.js"></script>
+  <script src="node_modules/zone.js/dist/zone.js"></script>
+  <script src="node_modules/reflect-metadata/Reflect.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+  <script>
+    window.Polymer = {
+      dom: 'shadow'
+    };
+  </script>
+
+  <!-- Polymer Elements -->
+  <link rel="import" href="bower_components/px-spinner/px-spinner.html" />
+  <link rel="import" href="bower_components/px-app-nav/px-app-nav.html" />
+
+  <!-- SystemJS Configuration -->
+  <script src="systemjs.config.js"></script>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      System.import('app').catch(function(err){ console.error(err); });
+    });
+  </script>
+</head>
+
+<body>
+    <my-app><px-spinner></px-spinner></my-app>
+</body>
+</html>
+

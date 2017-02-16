@@ -1,0 +1,26 @@
+<span>Student List</span><br>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Name</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let stud of students" (click)="onSelect(stud)" [class.selected]="stud===selectedStudent">
+        <td>{{stud.id}}</td>
+        <td>{{stud.name}}</td>
+        <td>{{stud.gender}}</td>
+        <td>{{stud.name}}</td>
+        <td>{{stud.name}}</td>
+    </tr>
+  </tbody>
+</table>
+<div>
+    <button type="button" class="btn btn-success" (click)="addNewStudent();">New Student</button> 
+</div>
+
+<!--<student-detail></student-detail>--> <!-- This working, check for life cycle method. -->

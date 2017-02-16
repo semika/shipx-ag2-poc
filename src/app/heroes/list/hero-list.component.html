@@ -1,0 +1,26 @@
+<span>Hero List</span><br>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Alter Ego</th>
+      <th>Power</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero===selectedHero">
+        <td>{{hero.id}}</td>
+        <td>{{hero.name}}</td>
+        <td>{{hero.alterEgo}}</td>
+        <td>{{hero.power}}</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div>
+    <button type="button" class="btn btn-success" (click)="addNewHero();">New Hero</button> 
+</div>
+
+
+
