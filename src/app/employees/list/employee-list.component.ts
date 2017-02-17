@@ -1,8 +1,7 @@
-import { Component , OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { Employee } from '../model/employee';
-import { EmployeeService } from '../service/employee.service';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {Employee} from "../model/employee";
+import {EmployeeService} from "../service/employee.service";
 
 declare var __moduleName: string;
 @Component({
@@ -20,10 +19,10 @@ export class EmployeeListComponent implements OnInit {
     constructor(private employeeService : EmployeeService, private router : Router) { }
 
     ngOnInit() : void {
-        this.getHeroes ();
+        this.getEmployees ();
     }
 
-    getHeroes () : void {
+    getEmployees () : void {
         this.employeeService.getEmployeeList().then(employees => this.employees = employees);
     }
 

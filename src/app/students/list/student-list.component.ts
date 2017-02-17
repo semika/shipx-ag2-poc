@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { Student } from '../model/student';
-import { StudentService } from '../service/student.service';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {Student} from "../model/student";
+import {StudentService} from "../service/student.service";
 
 declare var __moduleName: string;
 @Component({
@@ -17,7 +16,7 @@ export class StudentListCoponent implements OnInit {
     students : Student[];
     selectedStudent: Student;
 
-    constructor(private studentService : StudentService, private router : Router) {} 
+    constructor(private studentService : StudentService, private router : Router) {}
 
     ngOnInit() : void {
         this.getStudents();

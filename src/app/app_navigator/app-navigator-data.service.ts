@@ -1,15 +1,13 @@
-import { Injectable} from '@angular/core';
-
-import { NAVIGATOR_ITEMS } from './app-navigator-items'
+import {NAVIGATOR_ITEMS} from "./app-navigator-items";
 
 export class AppNavigatorDataService {
 
     getNavigatorItems() : Promise<{}[]> {
-        return Promise.resolve(NAVIGATOR_ITEMS);   
+        return Promise.resolve(NAVIGATOR_ITEMS);
     }
 
     getNavigatorItemsAsString() : Promise<string> {
-        return Promise.resolve(JSON.stringify(NAVIGATOR_ITEMS));   
+        return Promise.resolve(JSON.stringify(NAVIGATOR_ITEMS));
     }
 }
 

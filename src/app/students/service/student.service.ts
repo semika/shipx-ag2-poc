@@ -1,9 +1,9 @@
-import { Student } from '../model/student';
-import { STUDENTS } from '../service/student-mock.data';
+import {Student} from "../model/student";
+import {STUDENTS} from "../service/student-mock.data";
 
 export class StudentService {
-    
-    getStudentList() : Promise<Student[]> { 
+
+    getStudentList() : Promise<Student[]> {
         return Promise.resolve(STUDENTS);
     }
 
@@ -22,7 +22,7 @@ export class StudentService {
     delete(id : number) : void {
         for (var i = 0; i < STUDENTS.length; i++) {
             if (STUDENTS[i].id == id) {
-                STUDENTS.splice(i, 1); 
+                STUDENTS.splice(i, 1);
                 break;
             }
         }

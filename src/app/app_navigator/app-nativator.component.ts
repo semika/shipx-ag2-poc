@@ -1,19 +1,18 @@
-import { Component, Directive, OnInit} from '@angular/core';
-
-import { AppNavigatorDataService } from './app-navigator-data.service';
+import {Component, OnInit} from "@angular/core";
+import {AppNavigatorDataService} from "./app-navigator-data.service";
 
 declare var __moduleName: string;
 @Component ({
     moduleId : __moduleName,
     selector : 'app-navigator',
     templateUrl : './app-nativator.component.html',
-    styleUrls : ['./app-nativator.component.css'] 
+    styleUrls : ['./app-nativator.component.css']
 })
 
 export class AppNavigatorComponent implements OnInit {
 
-    navitems : {}[]; 
-    
+    navitems : {}[];
+
     constructor(private appNavigatorDataService: AppNavigatorDataService)  { }
 
     ngOnInit() : void {

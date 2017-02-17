@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from "@angular/core";
 
 declare var __moduleName: string;
 @Component({
@@ -15,6 +15,6 @@ declare var __moduleName: string;
 //     </div>`,
    styleUrls:['./app.component.css']
 })
-export class AppComponent  { 
-    title = 'ShipX AG2 POC'; 
+export class AppComponent  {
+    title = 'ShipX AG2 POC';
 }

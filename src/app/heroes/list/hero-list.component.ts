@@ -1,8 +1,7 @@
-import { Component , OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { Hero } from '../model/hero';
-import { HeroService } from '../service/hero.service';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {Hero} from "../model/hero";
+import {HeroService} from "../service/hero.service";
 
 declare var __moduleName: string;
 @Component({
@@ -13,10 +12,10 @@ declare var __moduleName: string;
  })
 
 export class HeroListComponent implements OnInit {
-    
+
     heroes : Hero[];
     selectedHero : Hero;
-    
+
     constructor(private heroService : HeroService, private router : Router) { }
 
     ngOnInit() : void {
@@ -24,11 +23,11 @@ export class HeroListComponent implements OnInit {
     }
 
     getHeroes () : void {
-        this.heroService.getHeroList().then(heroes => this.heroes = heroes); 
+        this.heroService.getHeroList().then(heroes => this.heroes = heroes);
     }
 
     onSelect(hero: Hero) : void {
-        this.selectedHero = hero; 
+        this.selectedHero = hero;
         this.goToDetail(this.selectedHero.id);
     }
 

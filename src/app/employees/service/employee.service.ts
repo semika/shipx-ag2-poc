@@ -1,5 +1,5 @@
-import { Employee } from '../model/employee';
-import { EMPLOYEES } from './employee-mock.data';
+import {Employee} from "../model/employee";
+import {EMPLOYEES} from "./employee-mock.data";
 
 export class EmployeeService {
 

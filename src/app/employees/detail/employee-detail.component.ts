@@ -1,11 +1,9 @@
-
-import { Component, Input , OnInit , Inject } from '@angular/core';
-import { ActivatedRoute, Params, Router} from '@angular/router';
-import { Location } from '@angular/common';
-import 'rxjs/add/operator/switchMap';
-
-import { Employee } from '../model/employee';
-import { EmployeeService } from '../service/employee.service';
+import {Component, Input, OnInit, Inject} from "@angular/core";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Location} from "@angular/common";
+import "rxjs/add/operator/switchMap";
+import {Employee} from "../model/employee";
+import {EmployeeService} from "../service/employee.service";
 
 declare var __moduleName: string;
 @Component ( {
