@@ -4,16 +4,16 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Alter Ego</th>
-      <th>Power</th>
+      <th>Address</th>
+      <th>Type</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor = "let employee of employees" (click)="onSelect(employee)" [class.selected]="employee===selectedEmployee">
         <td>{{employee.id}}</td>
         <td>{{employee.name}}</td>
-        <td>{{employee.alterEgo}}</td>
-        <td>{{employee.power}}</td>
+        <td>{{employee.address}}</td>
+        <td>{{employee.empType}}</td>
     </tr>
   </tbody>
 </table>

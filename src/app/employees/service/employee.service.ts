@@ -8,11 +8,11 @@ export class EmployeeService {
     }
 
     getEmployeeById(id : number) : Promise<Employee> {
-        return this.getEmployeeList().then(heroes => heroes.find(hero => hero.id === id));
+        return this.getEmployeeList().then(employees => employees.find(employee => employee.id === id));
     }
 
-    add(hero: Employee) : void {
-      EMPLOYEES.push(hero);
+    add(employee: Employee) : void {
+      EMPLOYEES.push(employee);
     }
 
     delete(id : number) : void {
@@ -24,12 +24,12 @@ export class EmployeeService {
         }
     }
 
-    update(_hero : Employee) : void {
+    update(employee : Employee) : void {
         for (var i = 0; i < EMPLOYEES.length; i++) {
-            if (EMPLOYEES[i].id == _hero.id) {
-                EMPLOYEES[i].name = _hero.name;
-                EMPLOYEES[i].alterEgo = _hero.alterEgo;
-                EMPLOYEES[i].power = _hero.power;
+            if (EMPLOYEES[i].id == employee.id) {
+                EMPLOYEES[i].name = employee.name;
+                EMPLOYEES[i].address = employee.address;
+                EMPLOYEES[i].empType = employee.empType;
                 break;
             }
         }

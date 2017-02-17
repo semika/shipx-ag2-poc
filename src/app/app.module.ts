@@ -30,6 +30,7 @@ import { MDL} from './material-design-lite-upgrade-element';
 
 const powerList = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];
 const genderList = [{'key':'M', 'value':'Male'} , {'key':'F', 'value':'Female'}];
+const empTypeList = [{'key':'1', 'value':'HR'} , {'key':'2', 'value':'IT'} , {'key':'3', 'value':'Admin'}];
 
 @NgModule({
   imports:      [ BrowserModule ,
@@ -59,7 +60,8 @@ const genderList = [{'key':'M', 'value':'Male'} , {'key':'F', 'value':'Female'}]
                EmployeeService,
                HeroService,
                {provide : 'powerListToken', useValue : powerList},
-               {provide : 'genderList', useValue : genderList}
+               {provide : 'genderList', useValue : genderList},
+               {provide : 'empTypeList', useValue : empTypeList}
                ] // services can be provided here for application level ones.
 })
 export class AppModule { }

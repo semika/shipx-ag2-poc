@@ -20,7 +20,7 @@ export class EmployeeDetailComponent implements OnInit {
                 private route: ActivatedRoute,
                 private location: Location,
                 private router : Router,
-                @Inject('powerListToken') public powers : {}) { }
+                @Inject('empTypeList') public empTypes : {}) { }
     @Input()
     employee: Employee;
 
