@@ -1,4 +1,6 @@
-{{diagnostic}} <!-- This can be used to check two way data binding works properly. Simply changes done with the form impacted to the model -->
+<!-- {{diagnostic}} --> 
+<!-- Above can be used to check two way data binding works properly. Simply changes done with the form impacted to the model -->
+
 <div class="container" *ngIf="hero">
     <h1>Hero Form</h1>
     <form id="heroForm" name="heroForm" #heroForm="ngForm" (ngSubmit) = "add()"> <!-- #heroForm, #name kind of variables are called template reference variables -->
@@ -9,8 +11,8 @@
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" name="name"  required [(ngModel)] = "hero.name" class="form-control" #name="ngModel">  <!-- #spy can be used to get the control's status, like touched, dirty etc--> 
-        <span [hidden]="name.valid || name.pristine" class="alert alert-danger">
-            Name is required
+        <span *ngIf="formErrors.name" class="alert alert-danger">
+            {{ formErrors.name }}
         </span>
       </div>
 
@@ -27,10 +29,11 @@
             <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
         </select>
      </div>
+     
      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Add</button>
      <button type="button" class="btn" (click) = "update();">Update</button>
      <button type="button" class="btn" (click) = "delete();">Delete</button>
-     <button type="button" class="btn btn-success" (click)="heroForm.reset(); newHero();">Reset</button> 
+     <button class="btn btn-success" (click)="heroForm.reset(); newHero();">Reset</button> 
      <button (click)="goBack()" class="btn btn-success">Back</button>
     </form>
 </div>
