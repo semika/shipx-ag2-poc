@@ -1,0 +1,26 @@
+<span>Employee List</span><br>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Alter Ego</th>
+      <th>Power</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let employee of employees" (click)="onSelect(employee)" [class.selected]="employee===selectedEmployee">
+        <td>{{employee.id}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.alterEgo}}</td>
+        <td>{{employee.power}}</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div>
+    <button type="button" class="btn btn-success" (click)="addNewHero();">New Hero</button>
+</div>
+
+
+

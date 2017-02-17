@@ -13,15 +13,18 @@ import { StudentListCoponent } from './students/list/student-list.component';
 import { StudentDetailComponent} from './students/detail/student-detail.component';
 import { HeroListComponent } from './heroes/list/hero-list.component';
 import { HeroDetailComponent } from './heroes/detail/hero-detail.component';
+import { EmployeeListComponent } from './employees/list/employee-list.component';
+import { EmployeeDetailComponent } from './employees/detail/employee-detail.component';
 
 import { HeaderComponent } from './layout/header.component';
 import { MenuComponent} from './layout/menu.component';
 import { SidebarComponent } from './layout/sidebar.component';
 import { UserProfileComponent } from './layout/profile.component';
 
-import { AppNavigatorDataService} from './app_navigator/app-navigator-data.service';  
+import { AppNavigatorDataService} from './app_navigator/app-navigator-data.service';
 import { StudentService } from './students/service/student.service';
 import { HeroService } from './heroes/service/hero.service';
+import { EmployeeService } from './employees/service/employee.service';
 
 import { MDL} from './material-design-lite-upgrade-element';
 
@@ -29,17 +32,19 @@ const powerList = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Chang
 const genderList = [{'key':'M', 'value':'Male'} , {'key':'F', 'value':'Female'}];
 
 @NgModule({
-  imports:      [ BrowserModule , 
-                  AppRoutingModule , 
+  imports:      [ BrowserModule ,
+                  AppRoutingModule ,
                   FormsModule,
                   HttpModule],
-                  
+
   declarations: [ AppComponent,
-                  AppNavigatorComponent, 
+                  AppNavigatorComponent,
                   StudentListCoponent,
                   StudentDetailComponent,
                   HeroListComponent,
                   HeroDetailComponent,
+                  EmployeeListComponent,
+                  EmployeeDetailComponent,
                   HeaderComponent,
                   MenuComponent,
                   SidebarComponent,
@@ -49,10 +54,11 @@ const genderList = [{'key':'M', 'value':'Male'} , {'key':'F', 'value':'Female'}]
                   PolymerElement('px-app-nav')],
   bootstrap:    [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers : [AppNavigatorDataService, 
-               StudentService, 
+  providers : [AppNavigatorDataService,
+               StudentService,
+               EmployeeService,
                HeroService,
-               {provide : 'powerListToken', useValue : powerList}, 
+               {provide : 'powerListToken', useValue : powerList},
                {provide : 'genderList', useValue : genderList}
                ] // services can be provided here for application level ones.
 })

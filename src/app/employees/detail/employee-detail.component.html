@@ -1,0 +1,36 @@
+{{diagnostic}} <!-- This can be used to check two way data binding works properly. Simply changes done with the form impacted to the model -->
+<div class="container" *ngIf="employee">
+    <h1>Employee Form</h1>
+    <form id="employeeForm" name="employeeForm" #employeeForm="ngForm" (ngSubmit) = "add()"> <!-- #employeeForm, #name kind of variables are called template reference variables -->
+      <!-- 'Id' as a hidden field -->
+      <div><input type="hidden" id="id" name="id" [(ngModel)] = "employee.id" ></div>
+
+      <!-- 'Name'  form control -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name"  required [(ngModel)] = "employee.name" class="form-control" #name="ngModel">  <!-- #spy can be used to get the control's status, like touched, dirty etc-->
+        <span [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            Name is required
+        </span>
+      </div>
+
+      <!-- 'Alter Ego'  form control -->
+      <div class="form-group">
+        <label for="alterEgo">Alter Ego</label>
+        <input type="text" id="alterEgo" name="alterEgo" [(ngModel)]="employee.alterEgo" class="form-control">
+      </div>
+
+      <!-- 'Hero Power'  form control -->
+    <div class="form-group">
+        <label for="power">Hero Power</label>
+        <select id="power" name="power" required [(ngModel)]="employee.power" class="form-control">
+            <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+        </select>
+     </div>
+     <button type="submit" class="btn btn-success" [disabled]="!employeeForm.form.valid">Add</button>
+     <button type="button" class="btn" (click) = "update();">Update</button>
+     <button type="button" class="btn" (click) = "delete();">Delete</button>
+     <button type="button" class="btn btn-success" (click)="employeeForm.reset(); newHero();">Reset</button>
+     <button (click)="goBack()" class="btn btn-success">Back</button>
+    </form>
+</div>
