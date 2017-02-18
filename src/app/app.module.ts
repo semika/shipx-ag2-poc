@@ -3,6 +3,9 @@ import {BrowserModule} from "@angular/platform-browser";
 import {PolymerElement} from "@vaadin/angular2-polymer";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './common/in-memory-data.service';
+
 //Application modules
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
@@ -29,9 +32,11 @@ const empTypeList = [{'key':'1', 'value':'HR'} , {'key':'2', 'value':'IT'} , {'k
 
 @NgModule({
   imports:      [ BrowserModule ,
-                  AppRoutingModule ,
                   FormsModule,
-                  HttpModule],
+                  HttpModule,
+                  AppRoutingModule,
+                  InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true})
+                  ],
 
   declarations: [ AppComponent,
                   AppNavigatorComponent,

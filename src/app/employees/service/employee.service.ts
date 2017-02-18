@@ -1,41 +1,70 @@
 import {Employee} from "../model/employee";
 import {EMPLOYEES} from "./employee-mock.data";
+import {InMemoryDataService} from "../../common/in-memory-data.service";
+import {Injectable} from "@angular/core";
+import {Http, Headers, URLSearchParams} from "@angular/http";
+import 'rxjs/add/operator/toPromise';
 
+@Injectable()
 export class EmployeeService {
+  private headers = new Headers({'Content-Type': 'application/json'});
+  private employeeUrl = '/app/employees';
 
-    getEmployeeList() : Promise<Employee[]> {
-        return Promise.resolve(EMPLOYEES);
-    }
+  constructor(private http: Http) {}
 
-    getEmployeeById(id : number) : Promise<Employee> {
-        return this.getEmployeeList().then(employees => employees.find(employee => employee.id === id));
-    }
 
-    add(employee: Employee) : void {
-      EMPLOYEES.push(employee);
-    }
+  getEmployeeList(): Promise<Employee[]> {
+    return this.http.get(this.employeeUrl)
+      .toPromise()
+      .then(response => response.json().data as Employee[])
+      .catch(this.handleError);
+  }
 
-    delete(id : number) : void {
-        for (var i = 0; i < EMPLOYEES.length; i++) {
-            if (EMPLOYEES[i].id == id) {
-                EMPLOYEES.splice(i, 1);
-                break;
-            }
-        }
-    }
+  private success(): Promise<any> {
+    return Promise.resolve();
+  }
 
-    update(employee : Employee) : void {
-        for (var i = 0; i < EMPLOYEES.length; i++) {
-            if (EMPLOYEES[i].id == employee.id) {
-                EMPLOYEES[i].name = employee.name;
-                EMPLOYEES[i].address = employee.address;
-                EMPLOYEES[i].empType = employee.empType;
-                break;
-            }
-        }
-    }
+  private handleError(error: any) {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
+  }
 
-    getNextEmployeeId() : number {
-        return EMPLOYEES.length + 1;
-    }
+
+  getEmployeeById(id: number): Promise<Employee> {
+    let fetchUrl = `${this.employeeUrl}/${id}`;
+    return this.http.get(fetchUrl)
+        .toPromise()
+        .then(response => response.json().data as Employee)
+        .catch(this.handleError);
+  }
+
+  add(employee: Employee): Promise<Employee> {
+    return this.http.post(this.employeeUrl, JSON.stringify(employee), { headers: this.headers })
+          .toPromise()
+          .then(response => response.json().data as Employee)
+          .catch(this.handleError);
+  }
+
+  delete(id: number): Promise<any> {
+    let deleteUrl = `${this.employeeUrl}/${id}`;
+    return this.http.delete(deleteUrl)
+        .toPromise()
+        .then(this.success)
+        .catch(this.handleError);
+  }
+
+  update(employee: Employee): Promise<any> {
+    let updateUrl = `${this.employeeUrl}/${employee.id}`;
+
+    return this.http.put(updateUrl, JSON.stringify(employee), { headers: this.headers })
+        .toPromise()
+        .then(this.success)
+        .catch(this.handleError);
+  }
+
+  getNextEmployeeId(): Promise<number> {
+    return this.getEmployeeList()
+        .then(employees => employees.length)
+        .catch(this.handleError);
+  }
 }

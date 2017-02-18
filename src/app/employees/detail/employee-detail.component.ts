@@ -37,7 +37,10 @@ export class EmployeeDetailComponent implements OnInit {
     }
 
     add() : void {
-        this.employee.id = this.employeeService.getNextEmployeeId();
+        var id: number;
+        this.employeeService.getNextEmployeeId().
+            then(id => id);
+        this.employee.id = id;
         this.employeeService.add(this.employee);
         this.router.navigate(['employees']);
     }
@@ -53,7 +56,10 @@ export class EmployeeDetailComponent implements OnInit {
     }
 
     newHero() : void {
-        this.employee = new Employee(this.employeeService.getNextEmployeeId(), '' , '',  '');
+        var id: number;
+        this.employeeService.getNextEmployeeId().
+            then(id => id);
+        this.employee = new Employee(id, '' , '',  '');
     }
 
     // TODO: Remove this when we're done
