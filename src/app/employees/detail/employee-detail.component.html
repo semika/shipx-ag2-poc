@@ -1,4 +1,4 @@
-{{diagnostic}} <!-- This can be used to check two way data binding works properly. Simply changes done with the form impacted to the model -->
+<!--{{diagnostic}} &lt;!&ndash; This can be used to check two way data binding works properly. Simply changes done with the form impacted to the model &ndash;&gt;-->
 <div class="container" *ngIf="employee">
     <h1>Employee Form</h1>
     <form id="employeeForm" name="employeeForm" #employeeForm="ngForm" (ngSubmit) = "add()"> <!-- #employeeForm, #name kind of variables are called template reference variables -->
@@ -22,13 +22,13 @@
     <div class="form-group">
         <label for="type">Type</label>
         <select id="type" name="type" required [(ngModel)]="employee.empType" class="form-control">
-            <option *ngFor="let emp of empTypes" [value]="emp.key">{{emp.value}}</option>
+            <option *ngFor="let empType of empTypes" [value]="empType.key">{{empType.value}}</option>
         </select>
      </div>
-     <button type="submit" class="btn btn-success" [disabled]="!employeeForm.form.valid">Add</button>
+     <button type="submit" class="btn btn-success" [disabled]="!employeeForm.form.valid">New</button>
      <button type="button" class="btn" (click) = "update();">Update</button>
      <button type="button" class="btn" (click) = "delete();">Delete</button>
-     <button type="button" class="btn btn-success" (click)="employeeForm.reset(); newHero();">Reset</button>
+     <button type="button" class="btn btn-success" (click)="employeeForm.reset(); newRecord();">Reset</button>
      <button (click)="goBack()" class="btn btn-success">Back</button>
     </form>
 </div>

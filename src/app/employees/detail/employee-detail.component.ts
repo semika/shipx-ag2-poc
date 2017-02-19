@@ -3,6 +3,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import "rxjs/add/operator/switchMap";
 import {Employee} from "../model/employee";
+import {KeyValue} from "../../common/model/keyvalue";
 import {EmployeeService} from "../service/employee.service";
 
 declare var __moduleName: string;
@@ -17,20 +18,25 @@ export class EmployeeDetailComponent implements OnInit {
     constructor(private employeeService: EmployeeService,
                 private route: ActivatedRoute,
                 private location: Location,
-                private router : Router,
-                @Inject('empTypeList') public empTypes : {}) { }
+                private router : Router) { }
     @Input()
     employee: Employee;
+
+    @Input()
+    empTypes: KeyValue[];
 
     ngOnInit() : void {
         this.route.params.switchMap((params: Params) => this.employeeService.getEmployeeById(+params['id'])).subscribe(employee => {
             if (employee == null) { // '0' should be passed when creating new employee.
-                this.newHero();
+                this.newRecord();
             } else {
                 this.employee = JSON.parse(JSON.stringify(employee)) // clone the object
             }
         });
+
+        this.employeeService.getEmpTypeList().then(empTypes => this.empTypes = empTypes);
     }
+
 
     goBack() : void {
         this.location.back();
@@ -55,7 +61,7 @@ export class EmployeeDetailComponent implements OnInit {
         this.router.navigate(['employees']);
     }
 
-    newHero() : void {
+    newRecord() : void {
         var id: number;
         this.employeeService.getNextEmployeeId().
             then(id => id);

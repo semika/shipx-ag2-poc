@@ -16,6 +16,11 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 10, name: 'Tornado1' , empType : '1', address : 'Chuck Overstreet20'}
     ];
 
-    return {employees};
+    let empTypes = [
+      {key: 'MG', value : 'Manager'},
+      {key: 'EG', value : 'Engineer'}
+    ]
+
+    return {employees, empTypes};
   }
 }

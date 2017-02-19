@@ -1,25 +1,25 @@
 <span>Employee List</span><br>
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Type</th>
+      <th class="mdl-data-table__cell--non-numeric">ID</th>
+      <th class="mdl-data-table__cell--non-numeric">Name</th>
+      <th class="mdl-data-table__cell--non-numeric">Address</th>
+      <th class="mdl-data-table__cell--non-numeric">Type</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor = "let employee of employees" (click)="onSelect(employee)" [class.selected]="employee===selectedEmployee">
-        <td>{{employee.id}}</td>
-        <td>{{employee.name}}</td>
-        <td>{{employee.address}}</td>
-        <td>{{employee.empType}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{employee.id}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{employee.name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{employee.address}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{employee.empType}}</td>
     </tr>
   </tbody>
 </table>
 <br>
 <div>
-    <button type="button" class="btn btn-success" (click)="addNewHero();">New Hero</button>
+    <button type="button" class="btn btn-success" (click)="newRecord();">New</button>
 </div>
 
 

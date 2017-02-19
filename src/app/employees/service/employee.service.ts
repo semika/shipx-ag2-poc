@@ -1,6 +1,5 @@
 import {Employee} from "../model/employee";
-import {EMPLOYEES} from "./employee-mock.data";
-import {InMemoryDataService} from "../../common/in-memory-data.service";
+import {KeyValue} from "../../common/model/keyvalue";
 import {Injectable} from "@angular/core";
 import {Http, Headers, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
@@ -9,9 +8,18 @@ import 'rxjs/add/operator/toPromise';
 export class EmployeeService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private employeeUrl = '/app/employees';
+  private empTypesUrl = '/app/empTypes';
 
   constructor(private http: Http) {}
 
+  getEmpTypeList(): Promise<KeyValue[]> {
+
+    return this.http.get(this.empTypesUrl)
+        .toPromise()
+        .then(response => response.json().data as KeyValue[])
+        .catch(this.handleError);
+
+  }
 
   getEmployeeList(): Promise<Employee[]> {
     return this.http.get(this.employeeUrl)
@@ -64,7 +72,7 @@ export class EmployeeService {
 
   getNextEmployeeId(): Promise<number> {
     return this.getEmployeeList()
-        .then(employees => employees.length)
+        .then(employees => employees.length + 1)
         .catch(this.handleError);
   }
 }

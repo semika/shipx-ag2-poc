@@ -35,7 +35,7 @@ export class EmployeeListComponent implements OnInit {
         this.router.navigate(['employeeDetail', id]);
     }
 
-    addNewHero() : void {
+    newRecord() : void {
         this.router.navigate(['employeeDetail', 0]);
     }
 }
