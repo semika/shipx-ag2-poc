@@ -3,7 +3,6 @@ import { Headers, RequestOptions, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import {Student} from "../model/student";
-import {STUDENTS} from "../service/student-mock.data";
 
 @Injectable()
 export class StudentService {
@@ -29,7 +28,6 @@ export class StudentService {
     }
 
     add(student: Student) : Promise<Student> {
-        STUDENTS.push(student);
         return this.http
             .post(this.studentUrl, JSON.stringify(student), {headers : this.headers})
             .toPromise()
@@ -39,9 +37,7 @@ export class StudentService {
     }
 
     getNextStudentId() : Promise<number> {
-        //return STUDENTS.length + 1;
-
-         return this.http.get(this.studentUrl)
+        return this.http.get(this.studentUrl)
                 .toPromise()
                 .then(response => response.json().data.length as number)
                 .catch(this.handleError);
