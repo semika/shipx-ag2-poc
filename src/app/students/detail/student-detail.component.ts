@@ -37,7 +37,7 @@ export class StudentDetailComponent implements OnInit , AfterViewChecked {
     };
 
     constructor(private studentService : StudentService, 
-                private route : ActivatedRoute, 
+                private activatedRoute : ActivatedRoute, 
                 private location: Location, 
                 @Inject('genderList') public genderList : {},
                 private router : Router) { }
@@ -45,13 +45,20 @@ export class StudentDetailComponent implements OnInit , AfterViewChecked {
     @ViewChild('studentForm') currentForm : NgForm;
 
     ngOnInit() : void {
-        this.route.params.switchMap((params: Params) => this.studentService.getStudentById(+params['id'])).subscribe(student => {
-            if (student == null) { //For new student, 0 is passed in.
-                this.newStudent();
+        this.activatedRoute.params.subscribe( (params : Params) => {
+            let id = +params['id']; // '+' to convert string to number
+            let opCode = params['opCode'];
+
+            if (opCode == "new") {
+                //New student
+                this.newStudent(id);
             } else {
-                this.student = JSON.parse(JSON.stringify(student)); 
-            }
-        }); 
+                //update student
+                this.studentService.getStudentById(id).then(student => {
+                    this.student = JSON.parse(JSON.stringify(student)); 
+                });
+            }  
+        });
     }
 
     ngAfterViewChecked() : void {
@@ -86,7 +93,6 @@ export class StudentDetailComponent implements OnInit , AfterViewChecked {
     }
 
     add() { 
-        this.student.id = this.studentService.getNextStudentId();
         this.studentService.add(this.student);
         this.router.navigate(['students']);
     }
@@ -105,8 +111,18 @@ export class StudentDetailComponent implements OnInit , AfterViewChecked {
         this.router.navigate(['students']);
     }
 
-    newStudent() : void {
-        this.student = new Student(this.studentService.getNextStudentId(), '', '');
+    newStudent(id : number) : void {
+        this.student = new Student(id, '', '');  
     }
+
+    onReset() : void {
+        this.studentService.getNextStudentId().then(id => {
+            console.log("Next student id " + id + 1);
+            this.student = new Student(id + 1, '', '');  
+        }); 
+    }
+
+    // TODO: Remove this when we're done
+    get diagnostic() { return JSON.stringify(this.student); }
 }
 

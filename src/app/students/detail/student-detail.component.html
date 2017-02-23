@@ -1,3 +1,4 @@
+ {{diagnostic}}
 <br>
 <div class="container" *ngIf="student">
         <h1>Student Form</h1>
@@ -20,8 +21,8 @@
                 <div>
                         <button type="submit" class="btn btn-success" class="btn btn-success" [disabled]="!studentForm.form.valid">Add</button>
                         <button type="button" class="btn" (click) = "update();">Update</button>
-                        <button type="button" class="btn" (click) = "delete();">Delete</button>
-                        <button (click) = "studentForm.reset(); newStudent();" class="btn btn-success">Reset</button>
+                        <button type="button" class="btn" (click) = "delete();$event.stopPropagation()">Delete</button>
+                        <button (click) = "studentForm.reset(); onReset();" class="btn btn-success">Reset</button>
                         <button (click)="goBack()" class="btn btn-success" class="btn btn-success">Back</button>                       
                 </div>
         </form>

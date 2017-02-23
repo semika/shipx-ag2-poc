@@ -3,6 +3,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     console.log("api employee");
+    
     let employees = [
       { id: 1, name: 'Mr. Nice', empType : '2', address : 'Chuck Overstreet11'},
       { id: 2, name: 'Narco', empType : '1', address : 'Chuck Overstreet12'},
@@ -21,6 +22,15 @@ export class InMemoryDataService implements InMemoryDbService {
       {key: 'EG', value : 'Engineer'}
     ]
 
-    return {employees, empTypes};
+    let studentList = [
+        {id: 1, name : "Jake", gender : 'M'},
+        {id: 2, name : "Brent", gender : 'M'},
+        {id: 3, name : "Jim",  gender : 'M'},
+        {id: 4, name : "Seth", gender : 'M'},
+        {id: 5, name : "Kelly", gender : 'F'},
+        {id: 6, name : "Viki", gender : 'F'}
+    ];
+
+    return {employees, empTypes, studentList};
   }
 }

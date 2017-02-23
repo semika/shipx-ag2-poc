@@ -28,7 +28,7 @@ export class StudentListCoponent implements OnInit {
     }
 
     goToDetail() : void {
-        this.router.navigate(['studentDetail', this.selectedStudent.id]);
+        this.router.navigate(['studentDetail', this.selectedStudent.id, 'update']);
     }
 
     getStudents() : void {
@@ -36,6 +36,9 @@ export class StudentListCoponent implements OnInit {
     }
 
     addNewStudent() : void {
-        this.router.navigate(['studentDetail', 0]);
+        this.studentService.getNextStudentId().then(id => {
+            console.log("Next student id " + id + 1);
+            this.router.navigate(['studentDetail', id + 1, 'new']);
+        });   
     }
 }
