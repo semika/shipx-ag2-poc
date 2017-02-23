@@ -20,7 +20,7 @@ export class InMemoryDataService implements InMemoryDbService {
     let empTypes = [
       {key: 'MG', value : 'Manager'},
       {key: 'EG', value : 'Engineer'}
-    ]
+    ];
 
     let studentList = [
         {id: 1, name : "Jake", gender : 'M'},

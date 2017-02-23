@@ -5,13 +5,13 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class KeyValueService {
-  private empTypeUrl = '/app/empType';
+  private keyValueUrl = '/api/keyValues';
 
   constructor(private http: Http) {}
 
 
   getEmpTypeList(): Promise<KeyValue[]> {
-    return this.http.get(this.empTypeUrl)
+    return this.http.get(this.keyValueUrl)
       .toPromise()
       .then(response => response.json().data as KeyValue[])
       .catch(this.handleError);
