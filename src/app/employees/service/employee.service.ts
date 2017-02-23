@@ -19,7 +19,7 @@ export class EmployeeService {
     return this.http.get(this.empTypesUrl)
         .toPromise()
         .then(response => response.json().data as KeyValue[])
-        .catch(this.handleError);
+        .catch(this.handleErrorPromise);
 
   }
 
@@ -27,7 +27,7 @@ export class EmployeeService {
     return this.http.get(this.employeeUrl)
       .toPromise()
       .then(response => response.json().data as Employee[])
-      .catch(this.handleError); 
+      .catch(this.handleErrorPromise); 
   }
 
   getEmployeeList(): Observable<Employee[]> {
@@ -37,15 +37,21 @@ export class EmployeeService {
         .catch (this.handleError);
   }
 
+  private handleError (error: Response) {
+    console.error (error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
+
 
   private success(): Promise<any> {
     return Promise.resolve();
   }
 
-  private handleError(error: any) {
+  private handleErrorPromise(error: any) {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
+
 
 
   getEmployeeById(id: number): Promise<Employee> {
@@ -53,14 +59,14 @@ export class EmployeeService {
     return this.http.get(fetchUrl)
         .toPromise()
         .then(response => response.json().data as Employee)
-        .catch(this.handleError);
+        .catch(this.handleErrorPromise);
   }
 
   add(employee: Employee): Promise<Employee> {
     return this.http.post(this.employeeUrl, JSON.stringify(employee), { headers: this.headers })
           .toPromise()
           .then(response => response.json().data as Employee)
-          .catch(this.handleError);
+          .catch(this.handleErrorPromise);
   }
 
   delete(id: number): Promise<any> {
@@ -68,7 +74,7 @@ export class EmployeeService {
     return this.http.delete(deleteUrl)
         .toPromise()
         .then(this.success)
-        .catch(this.handleError);
+        .catch(this.handleErrorPromise);
   }
 
   update(employee: Employee): Promise<any> {
@@ -77,12 +83,12 @@ export class EmployeeService {
     return this.http.put(updateUrl, JSON.stringify(employee), { headers: this.headers })
         .toPromise()
         .then(this.success)
-        .catch(this.handleError);
+        .catch(this.handleErrorPromise);
   }
 
   getNextEmployeeId(): Promise<number> {
     return this.getEmployeeListPromise()
         .then(employees => employees.length + 1)
-        .catch(this.handleError);
+        .catch(this.handleErrorPromise);
   }
 }
