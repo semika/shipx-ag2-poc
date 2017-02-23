@@ -1,15 +1,16 @@
 import {Employee} from "../model/employee";
 import {KeyValue} from "../../common/model/keyvalue";
 import {Injectable} from "@angular/core";
-import {Http, Headers, URLSearchParams} from "@angular/http";
+import {Http, Headers, URLSearchParams, Response} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
-// import { Navigator } from 'ng2-hal';
+import 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class EmployeeService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private employeeUrl = '/api/employees';
-  private empTypesUrl = '/api/empTypes';
+  private empTypesUrl = '/api/keyValues';
 
   constructor(private http: Http) {}
 
@@ -17,18 +18,23 @@ export class EmployeeService {
 
     return this.http.get(this.empTypesUrl)
         .toPromise()
-        .then(response => response.json().data as KeyValue[])
+        .then(response => response.json()._embedded.keyValues as KeyValue[])
         .catch(this.handleError);
 //._embedded.
   }
 
-  getEmployeeList(): Promise<Employee[]> {
-
+  getEmployeeListPromise(): Promise<Employee[]> {
     return this.http.get(this.employeeUrl)
       .toPromise()
-      .then(response => response.json().data as Employee[])
+      .then(response => response.json()._embedded.employees as Employee[])
       .catch(this.handleError);
+  }
 
+  getEmployeeList(): Observable<Employee[]> {
+    return this.http.get (this.employeeUrl)
+        .map((response: Response) => <Employee[]>response.json()._embedded.employees)
+        // .do (data => console.log ('All: ' + JSON.stringify(data)))
+        .catch (this.handleError);
   }
 
   private success(): Promise<any> {
@@ -45,14 +51,14 @@ export class EmployeeService {
     let fetchUrl = `${this.employeeUrl}/${id}`;
     return this.http.get(fetchUrl)
         .toPromise()
-        .then(response => response.json().data as Employee)
+        .then(response => response.json() as Employee)
         .catch(this.handleError);
   }
 
   add(employee: Employee): Promise<Employee> {
     return this.http.post(this.employeeUrl, JSON.stringify(employee), { headers: this.headers })
           .toPromise()
-          .then(response => response.json().data as Employee)
+          .then(response => response.json() as Employee)
           .catch(this.handleError);
   }
 
@@ -74,7 +80,7 @@ export class EmployeeService {
   }
 
   getNextEmployeeId(): Promise<number> {
-    return this.getEmployeeList()
+    return this.getEmployeeListPromise()
         .then(employees => employees.length + 1)
         .catch(this.handleError);
   }
