@@ -1,4 +1,11 @@
 i18n
+test
+postman
 employee table type desc display
 
 http in memory web - https://www.youtube.com/watch?v=0vNcYT6e99c
+
+import { Navigator } from 'ng2-hal';
+
+brew services start nginx
+/usr/local/etc/nginx/nginx.conf

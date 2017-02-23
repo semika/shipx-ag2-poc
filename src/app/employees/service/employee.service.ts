@@ -3,12 +3,13 @@ import {KeyValue} from "../../common/model/keyvalue";
 import {Injectable} from "@angular/core";
 import {Http, Headers, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+// import { Navigator } from 'ng2-hal';
 
 @Injectable()
 export class EmployeeService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private employeeUrl = '/app/employees';
-  private empTypesUrl = '/app/empTypes';
+  private employeeUrl = '/api/employees';
+  private empTypesUrl = '/api/empTypes';
 
   constructor(private http: Http) {}
 
@@ -16,16 +17,18 @@ export class EmployeeService {
 
     return this.http.get(this.empTypesUrl)
         .toPromise()
-        .then(response => response.json().data as KeyValue[])
+        .then(response => response.json()._embedded.empTypes as KeyValue[])
         .catch(this.handleError);
 
   }
 
   getEmployeeList(): Promise<Employee[]> {
+
     return this.http.get(this.employeeUrl)
       .toPromise()
-      .then(response => response.json().data as Employee[])
+      .then(response => response.json()._embedded.employees as Employee[])
       .catch(this.handleError);
+
   }
 
   private success(): Promise<any> {
