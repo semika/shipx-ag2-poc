@@ -1,8 +1,10 @@
 import {Employee} from "../model/employee";
 import {KeyValue} from "../../common/model/keyvalue";
 import {Injectable} from "@angular/core";
-import {Http, Headers, URLSearchParams} from "@angular/http";
-import 'rxjs/add/operator/toPromise';
+import {Http, Headers, URLSearchParams, Response} from "@angular/http";
+//import 'rxjs/add/operator/toPromise';
+import 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class EmployeeService {
@@ -21,12 +23,20 @@ export class EmployeeService {
 
   }
 
-  getEmployeeList(): Promise<Employee[]> {
+  getEmployeeListPromise(): Promise<Employee[]> {
     return this.http.get(this.employeeUrl)
       .toPromise()
       .then(response => response.json().data as Employee[])
-      .catch(this.handleError);
+      .catch(this.handleError); 
   }
+
+  getEmployeeList(): Observable<Employee[]> {
+    return this.http.get (this.employeeUrl)
+        .map((response: Response) => <Employee[]>response.json().data)
+        .do (data => console.log ('All: ' + JSON.stringify(data)))
+        .catch (this.handleError);
+  }
+
 
   private success(): Promise<any> {
     return Promise.resolve();
@@ -71,7 +81,7 @@ export class EmployeeService {
   }
 
   getNextEmployeeId(): Promise<number> {
-    return this.getEmployeeList()
+    return this.getEmployeeListPromise()
         .then(employees => employees.length + 1)
         .catch(this.handleError);
   }
