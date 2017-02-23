@@ -22,7 +22,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {key: 'EG', value : 'Engineer'}
     ];
 
-    let studentList = [
+    let students = [
         {id: 1, name : "Jake", gender : 'M'},
         {id: 2, name : "Brent", gender : 'M'},
         {id: 3, name : "Jim",  gender : 'M'},
@@ -31,6 +31,6 @@ export class InMemoryDataService implements InMemoryDbService {
         {id: 6, name : "Viki", gender : 'F'}
     ];
 
-    return {employees, empTypes, studentList};
+    return {employees, empTypes, students};
   }
 }

@@ -8,7 +8,7 @@ import {Student} from "../model/student";
 export class StudentService {
 
     private headers = new Headers({'Content-Type': 'application/json'}); 
-    private studentUrl = 'api/studentList';
+    private studentUrl = 'api/students';
 
     constructor(private http: Http) {}
 
