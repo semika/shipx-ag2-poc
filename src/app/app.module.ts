@@ -34,8 +34,8 @@ const empTypeList = [{'key':'1', 'value':'HR'} , {'key':'2', 'value':'IT'} , {'k
   imports:      [ BrowserModule ,
                   FormsModule,
                   HttpModule,
-                  AppRoutingModule
-                  // InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true})
+                  AppRoutingModule,
+                  InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true})
                   ],
 
   declarations: [ AppComponent,

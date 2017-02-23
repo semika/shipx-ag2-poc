@@ -17,16 +17,16 @@ export class EmployeeService {
 
     return this.http.get(this.empTypesUrl)
         .toPromise()
-        .then(response => response.json()._embedded.empTypes as KeyValue[])
+        .then(response => response.json().data as KeyValue[])
         .catch(this.handleError);
-
+//._embedded.
   }
 
   getEmployeeList(): Promise<Employee[]> {
 
     return this.http.get(this.employeeUrl)
       .toPromise()
-      .then(response => response.json()._embedded.employees as Employee[])
+      .then(response => response.json().data as Employee[])
       .catch(this.handleError);
 
   }
