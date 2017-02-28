@@ -1,0 +1,6 @@
+<div class="filter">
+    <span class="reset" (click)="onResetDate()">x</span>
+    <input class="dd" (ngModelChange)="onDateChanged('dd', $event)" placeholder="dd"  maxLength="2"/>/
+    <input class="mm" (ngModelChange)="onDateChanged('mm', $event)" placeholder="mm"  maxLength="2"/>/
+    <input class="yyyy" (ngModelChange)="onDateChanged('yyyy', $event)" placeholder="yyyy"  maxLength="4"/>
+</div>

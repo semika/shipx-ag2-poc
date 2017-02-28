@@ -6,6 +6,7 @@ import {HeroDetailComponent} from "./heroes/detail/hero-detail.component";
 import {StudentDetailComponent} from "./students/detail/student-detail.component";
 import {EmployeeListComponent} from "./employees/list/employee-list.component";
 import {EmployeeDetailComponent} from "./employees/detail/employee-detail.component";
+import {AgGridDemo} from "./ag-grid-demo/ag-grid-demo.component";
 
 const routes: Routes =    [
                              {path : '', redirectTo : '/', pathMatch : 'full'},
@@ -14,7 +15,8 @@ const routes: Routes =    [
                              {path : 'heroDetail/:id', component : HeroDetailComponent},
                              {path : 'studentDetail/:id/:opCode', component : StudentDetailComponent},
                              {path : 'employees', component : EmployeeListComponent},
-                             {path : 'employeeDetail/:id', component : EmployeeDetailComponent}
+                             {path : 'employeeDetail/:id', component : EmployeeDetailComponent},
+                             {path : 'agGridDemo', component : AgGridDemo}
                           ];
 
 @NgModule({

@@ -26,6 +26,14 @@ import {HeroService} from "./heroes/service/hero.service";
 import {EmployeeService} from "./employees/service/employee.service";
 import {MDL} from "./material-design-lite-upgrade-element";
 
+//Ag grid related components
+import {AgGridDemo} from './ag-grid-demo/ag-grid-demo.component';
+import {AgGridModule} from 'ag-grid-angular/main';
+import {RichGridComponent} from "./rich-grid-example/rich-grid.component";
+import {DateComponent} from "./date-component/date.component";
+import {AgHeaderComponent} from "./header-component/header.component";
+import {HeaderGroupComponent} from "./header-group-component/header-group.component";
+
 const powerList = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];
 const genderList = [{'key':'M', 'value':'Male'} , {'key':'F', 'value':'Female'}];
 const empTypeList = [{'key':'1', 'value':'HR'} , {'key':'2', 'value':'IT'} , {'key':'3', 'value':'Admin'}];
@@ -34,8 +42,14 @@ const empTypeList = [{'key':'1', 'value':'HR'} , {'key':'2', 'value':'IT'} , {'k
   imports:      [ BrowserModule ,
                   FormsModule,
                   HttpModule,
-                  AppRoutingModule
-                  // InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true})
+                  AppRoutingModule,
+                  // InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true}),
+                  AgGridModule.withComponents(
+                  [
+                    DateComponent,
+                    AgHeaderComponent,
+                    HeaderGroupComponent
+                  ])
                   ],
 
   declarations: [ AppComponent,
@@ -51,6 +65,11 @@ const empTypeList = [{'key':'1', 'value':'HR'} , {'key':'2', 'value':'IT'} , {'k
                   SidebarComponent,
                   UserProfileComponent,
                   MDL,
+                  RichGridComponent,
+                  AgGridDemo,
+                  DateComponent,
+                  AgHeaderComponent,
+                  HeaderGroupComponent,
                   PolymerElement('px-spinner'),
                   PolymerElement('px-app-nav')],
   bootstrap:    [ AppComponent ],
