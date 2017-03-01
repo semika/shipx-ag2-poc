@@ -14,16 +14,21 @@ export class StudentService {
 
     getStudentList() : Promise<Student[]> {
         return this.http.get(this.studentUrl)
-                .toPromise()
-                .then(response => response.json().data as Student[])
-                .catch(this.handleError);
+            .toPromise()
+            .then(response => {
+                    let studList = response.json()._embedded.students;                  
+                    return studList as Student[];
+                })
+            .catch(this.handleError);
     }
 
     getStudentById(id : number) : Promise<Student> {
         const url = `${this.studentUrl}/${id}`;
         return this.http.get(url)
                 .toPromise()
-                .then(response => response.json().data as Student)
+                .then(response => {
+                    return response.json() as Student
+                })
                 .catch(this.handleError);
     }
 
@@ -31,16 +36,9 @@ export class StudentService {
         return this.http
             .post(this.studentUrl, JSON.stringify(student), {headers : this.headers})
             .toPromise()
-            .then(response => response.json().data as Student)
+            .then(response => response.json() as Student)
             .catch(this.handleError);
 
-    }
-
-    getNextStudentId() : Promise<number> {
-        return this.http.get(this.studentUrl)
-                .toPromise()
-                .then(response => response.json().data.length as number)
-                .catch(this.handleError);
     }
 
     delete(id : number) : Promise<void> {

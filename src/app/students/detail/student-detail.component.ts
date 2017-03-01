@@ -47,11 +47,10 @@ export class StudentDetailComponent implements OnInit , AfterViewChecked {
     ngOnInit() : void {
         this.activatedRoute.params.subscribe( (params : Params) => {
             let id = +params['id']; // '+' to convert string to number
-            let opCode = params['opCode'];
 
-            if (opCode == "new") {
+            if (id == 0) { // id == 0, means adding new student.
                 //New student
-                this.newStudent(id);
+                this.newStudent(null);
             } else {
                 //update student
                 this.studentService.getStudentById(id).then(student => {
@@ -73,7 +72,7 @@ export class StudentDetailComponent implements OnInit , AfterViewChecked {
         }
     }
 
-     onValueChanged(data?: any) : void {
+    onValueChanged(data?: any) : void {
         if (!this.studentForm) { return; }
         
         const form = this.studentForm.form;
@@ -93,6 +92,7 @@ export class StudentDetailComponent implements OnInit , AfterViewChecked {
     }
 
     add() { 
+        this.student.id = null; //This method will call only when adding a new student.
         this.studentService.add(this.student);
         this.router.navigate(['students']);
     }
@@ -116,10 +116,7 @@ export class StudentDetailComponent implements OnInit , AfterViewChecked {
     }
 
     onReset() : void {
-        this.studentService.getNextStudentId().then(id => {
-            console.log("Next student id " + id + 1);
-            this.student = new Student(id + 1, '', '');  
-        }); 
+        this.student = new Student(null, '', '');  
     }
 
     // TODO: Remove this when we're done
