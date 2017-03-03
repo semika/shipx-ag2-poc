@@ -27,8 +27,9 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       // 'angular-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
       '@vaadin/angular2-polymer':   'npm:@vaadin/angular2-polymer',
-      'ag-grid-angular' : 'node_modules/ag-grid-angular',
-      'ag-grid' : 'node_modules/ag-grid'
+                'ag-grid-angular': 'node_modules/ag-grid-angular',
+                'ag-grid': 'node_modules/ag-grid',
+                'ag-grid-enterprise': 'node_modules/ag-grid-enterprise'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -43,12 +44,18 @@
         main: './index.js',
         defaultExtension: 'js'
       },
-      'ag-grid-angular': {
-            defaultExtension: "js"
-      },
       'ag-grid': {
-           defaultExtension: "js"
-      }
+         main: 'main.js'
+      },
+       'ag-grid-angular': {
+             defaultExtension: "js"
+       },
+      'ag-grid': {
+         main: 'main.js'
+       },
+       'ag-grid-enterprise': {
+            defaultExtension: "js"
+       }
     }
   });
 })(this);

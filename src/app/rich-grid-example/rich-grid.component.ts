@@ -6,7 +6,8 @@ import SkillFilter from '../filters/skillFilter';
 import RefData from '../data/refData';
 
 // only import this if you are using the ag-Grid-Enterprise
-//import 'ag-grid-enterprise/main';
+import "ag-grid-enterprise/main";
+//import "rxjs/add/operator/switchMap";
 
 import {HeaderGroupComponent} from "../header-group-component/header-group.component";
 import {DateComponent} from "../date-component/date.component";
