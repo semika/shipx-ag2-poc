@@ -8,5 +8,10 @@ export const NAVIGATOR_ITEMS = [
       "path": "heroes",
       "icon": "fa-briefcase",
       "label": "Heroes"     
-    }
+    },
+    { 
+      "path": "employees",
+      "icon": "fa-briefcase",
+      "label": "Employees"     
+    }      
 ];

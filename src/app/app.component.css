@@ -26,3 +26,63 @@ nav a:hover {
 nav a.active {
   color: #039be5;
 }*/
+
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+    height: 100%;
+}
+
+header{
+    padding: 1em;
+    color: white;
+    clear: left;
+    text-align: left;
+    padding-left:10px;
+    background-color: #37474f !important;
+    height: 30px;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+footer {
+    padding: 1em;
+    color: white;
+    clear: left;
+    text-align: center;
+    padding-left:10px;
+    background-color: #37474f !important;
+    height:30px;
+    bottom: 0px;
+    position:absolute;
+    width:100%;
+}
+
+nav {
+    float: left;
+    margin: 0;
+    padding: 0.2em;
+    background-color: #37474f !important;
+    height: 100%;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    color:#FFFFFF;
+}
+   
+nav ul a {
+    text-decoration: none;
+    color:#FFFFFF;
+}
+
+main {
+    margin-left: 0px;
+    border-left: 0px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}

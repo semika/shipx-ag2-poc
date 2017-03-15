@@ -27,9 +27,16 @@
     "app-route": "PolymerElements/app-route#^0.9.3",
     "px-spinner": "^0.5.3",
     "webcomponentsjs": "^0.7.23",
-    "px-app-nav": "^1.10.5",
+    "px-app-nav": "^1.10.0",
     "px-button-group-design": "^1.0.6",
-    "px-starter-kit-design": "^0.7.4"
+    "px-starter-kit-design": "^0.7.4",
+    "px-view-header": "^0.2.5",
+    "px-view": "^1.1.0",
+    "px-data-table": "^1.15.21",
+    "px-card": "^0.7.1",
+    "px-calendar-picker": "^0.6.14",
+    "px-tabs": "^0.6.5",
+    "px-inbox": "^0.2.26"
   },
   "devDependencies": {
     "web-component-tester": "*",
