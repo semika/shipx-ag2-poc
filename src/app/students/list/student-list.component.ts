@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, AfterViewInit, AfterViewChecked} from "@angular/core";
 import {Router} from "@angular/router";
 import {Student} from "../model/student";
 import {StudentService} from "../service/student.service";
@@ -11,15 +11,33 @@ declare var __moduleName: string;
     styleUrls : ['student-list.component.css']
 })
 
-export class StudentListCoponent implements OnInit {
+export class StudentListCoponent implements OnInit, AfterViewInit , AfterViewChecked{
 
     students : Student[];
     selectedStudent: Student;
+    self:StudentListCoponent;
 
     constructor(private studentService : StudentService, private router : Router) {}
 
     ngOnInit() : void {
         this.getStudents();
+    }
+
+    ngAfterViewInit() : void {
+        this.initEvents();
+    }
+
+    ngAfterViewChecked() : void {
+        //this.initEvents();
+    }
+
+    initEvents(): void {
+        var $scope = this;
+        document.getElementsByTagName("px-data-table")[0].addEventListener("px-row-click", function(e) {
+            var clickedRow = e.detail.row;
+            $scope.router.navigate(['studentDetail', clickedRow.row.id.value]);
+            //  console.log("Row clicked", clickedRow, " _selected: ", clickedRow._selected);
+        });
     }
 
     onSelect(stud : Student) : void {

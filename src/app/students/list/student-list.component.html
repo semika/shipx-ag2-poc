@@ -1,5 +1,5 @@
 <span>Student List</span><br>
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<!--<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
   <thead>
     <tr>
       <th>ID</th>
@@ -17,6 +17,18 @@
 </table>
 <div>
     <button type="button" class="btn btn-success" (click)="addNewStudent();">New Student</button> 
-</div>
+</div>-->
 
 <!--<student-detail></student-detail>--> <!-- This working, check for life cycle method. -->
+
+<px-data-table [tableData] ='students' 
+              striped="true"  selectable
+              filterable="true" 
+              show-column-chooser="true" 
+              table-columns="true" 
+              table-rows="true" 
+              hide-pagination-control="true">
+
+              <px-data-table-column name="name" type="string" filterable="true" sortable="true"></px-data-table-column>
+              <px-data-table-column name="gender" type="string" filterable="true" sortable="true"></px-data-table-column>
+</px-data-table>
